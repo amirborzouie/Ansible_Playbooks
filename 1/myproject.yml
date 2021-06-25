@@ -1,4 +1,4 @@
 ---
-- hosts: [myservers]
+- hosts: localhost
   roles:
     - myproject
