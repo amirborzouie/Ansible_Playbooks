@@ -1,0 +1,161 @@
+- name: ----- Create /home/ansible_exercises/ -----
+  file:
+    path: /home/ansible
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- Create /home/ansible_exercises/playbook_exercise_4/ -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- inventory and roles directories -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/inventory
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- myproject.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/myproject.yml
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
+
+- name: ----- roles contents -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/defaults dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/defaults
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/files dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/files
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/handlers dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/handlers
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/meta dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/meta
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/tasks dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/tasks
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/templates dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/templates
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- roles/vars dir -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/vars
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: [create_directory]
+
+- name: ----- defaults/main.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/defaults/main.yml
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
+
+- name: ----- handlers/main.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/handlers/main.yml
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
+
+- name: ----- meta/main.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/meta/main.yml
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
+
+- name: ----- tasks/main.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/tasks/main.yml
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
+
+- name: ----- vars/main.yml -----
+  file:
+    path: /home/ansible_exercises/playbook_exercise_4/roles/myproject/vars/main.yml
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+  tags: [create_file]
