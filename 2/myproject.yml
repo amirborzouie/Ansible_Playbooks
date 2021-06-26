@@ -1,4 +1,4 @@
 ---
-- hosts: [myservrs]
+- hosts: [myservers]
   roles:
     - myproject
