@@ -10,7 +10,7 @@
 
 - name: ----- Copy your script -----
   ansible.builtin.copy:
-   # src: ../files/schedule1.sh
+    src: ../files/schedule1.sh
     dest: /home/
     owner: root
     group: root
