@@ -1,0 +1,23 @@
+# - name: ----- Schedule Script -----
+#   script: schedule.sh
+#   register: show_out
+#   tags: [shell_script]
+
+# - name: ----- Show Out -----
+#   debug:
+#     msg: "{{show_out.stdout}}"
+#   tags: [shell_script]
+
+- name: ----- Copy your script -----
+  ansible.builtin.copy:
+    src: ../files/schedule1.sh
+    dest: /home/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: ----- To run schedule1.sh -----
+  shell: /usr/bin/sh /home/schedule1.sh
+
+- name: ----- Cat the result of schedule1.sh -----
+  command: cat /home/schedule1.txt
