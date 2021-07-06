@@ -16,3 +16,7 @@
 - name: ----- df -h by shell mod -----
   shell: df -h
   tags: [shell_mod_2]
+
+- name: ----- Raw mod -----
+  raw: echo "test raw module" >> /home/TestDir/TestFile
+  tags: [raw_mod]
