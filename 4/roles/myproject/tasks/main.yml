@@ -23,11 +23,11 @@
 
 - name: ----- copy mod -----
   copy:
-    src: 
+    src: test.txt
     dest: /home/TestDir
-    owner:
-    group:
-    mode:
-    backup:
-    force:
-  tags:
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+    force: yes
+  tags: [copy_mod]
