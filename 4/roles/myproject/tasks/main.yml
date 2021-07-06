@@ -20,3 +20,14 @@
 - name: ----- Raw mod -----
   raw: echo "test raw module" >> /home/TestDir/TestFile
   tags: [raw_mod]
+
+- name: ----- copy mod -----
+  copy:
+    src: 
+    dest: /home/TestDir
+    owner:
+    group:
+    mode:
+    backup:
+    force:
+  tags:
