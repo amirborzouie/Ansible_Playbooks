@@ -32,3 +32,12 @@
     backup: yes
     force: yes
   tags: [copy_mod]
+
+- name: ----- fetch mod -----
+  fetch:
+    src: /home/file1
+    dest: /home
+  # flat: yes
+  # validate_checksum: yes or no
+  # fail_on_missing:
+  tags: [fetch_mod]
