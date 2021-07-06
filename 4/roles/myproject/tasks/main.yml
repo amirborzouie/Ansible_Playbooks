@@ -24,6 +24,7 @@
 - name: ----- copy mod -----
   copy:
     src: test.txt
+  # remote_src --> is used for copying files from a remote machine
     dest: /home/TestDir
     owner: root
     group: root
