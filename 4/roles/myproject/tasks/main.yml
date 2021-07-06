@@ -11,4 +11,8 @@
   shell: echo "test shell module" > TestFile
   args:
     chdir: /home/TestDir
-  tags: [shell_mod]
+  tags: [shell_mod_1]
+
+- name: ----- df -h by shell mod -----
+  shell: df -h
+  tags: [shell_mod_2]
