@@ -46,3 +46,14 @@
     security: yes
     bugfix: yes
   tags: [yum_latest]
+
+- name: ----- apt module -----
+  apt:
+    name: nginx
+    state: present
+  tags: [apt_mod]
+
+- name: ----- install a .deb package -----
+  apt:
+    deb: /opt/package.deb
+  tags: [apt_.deb_installation]
