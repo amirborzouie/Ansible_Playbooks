@@ -24,7 +24,6 @@
 
 - name:
   yum:
-    list: 
     name:
     state:
   tags: [yum_mod]
