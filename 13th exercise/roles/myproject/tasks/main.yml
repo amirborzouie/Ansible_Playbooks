@@ -25,7 +25,7 @@
 - name: ----- yum list -----
   yum:
     list: httpd
-    register: yum_list_out
+  register: yum_list_out
   tags: [yum_list]
 
 - name: ----- show yum list -----
