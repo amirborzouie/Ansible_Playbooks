@@ -44,4 +44,5 @@
     name: httpd
     state: latest
     security: yes
+    bugfix: yes
   tags: [yum_latest]
