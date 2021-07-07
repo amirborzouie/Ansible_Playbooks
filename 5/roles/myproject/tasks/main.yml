@@ -1,0 +1,5 @@
+- name: ----- Group module -----
+  group:
+    name: devops
+    state: present
+  tags: [group_mod]
