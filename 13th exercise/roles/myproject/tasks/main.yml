@@ -38,3 +38,10 @@
   debug: 
     msg: "{{yum_list_out}}"
   tags: [yum_list]
+
+- name: ----- yum latest for just security updates -----
+  yum:
+    name: httpd
+    state: latest
+    security: yes
+  tags: [yum_latest]
