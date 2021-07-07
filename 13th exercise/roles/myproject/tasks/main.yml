@@ -22,6 +22,12 @@
 #     state:
 #   tags: [yum_repository_mod]
 
+- name: ----- yum mod -----
+  yum:
+    name: httpd
+    state: present
+  tags: [yum_install]
+
 - name: ----- yum list -----
   yum:
     list: httpd
