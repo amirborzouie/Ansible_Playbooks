@@ -50,7 +50,9 @@
 - name: ----- apt module -----
   apt:
     name: nginx
-    state: present
+    state: present # or absent
+  # autoremove: yes
+  # purge: yes
   tags: [apt_mod]
 
 - name: ----- install a .deb package -----
