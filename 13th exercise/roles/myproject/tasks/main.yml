@@ -1,29 +1,34 @@
-- name: ----- zypper_repository module -----
-  zypper_repository:
-    name: 
-    repo: 
-    state:
-  tags: [zypper_repository_mod]
+# - name: ----- zypper_repository module -----
+#   zypper_repository:
+#     name: 
+#     repo: 
+#     state:
+#   tags: [zypper_repository_mod]
 
-- name: ----- zypper module -----
-  zypper:
-    name: ''
-    state:
-    disable_gpg_check:
-  tags: [zypper_mod]
+# - name: ----- zypper module -----
+#   zypper:
+#     name: ''
+#     state:
+#     disable_gpg_check:
+#   tags: [zypper_mod]
 
-- name: ----- yum_repository module -----
-  yum_repository:
-    name: 
-    description:
-    baseurl:
-    gpgcheck:
-    enabled:
-    state:
-  tags: [yum_repository_mod]
+# - name: ----- yum_repository module -----
+#   yum_repository:
+#     name: 
+#     description:
+#     baseurl:
+#     gpgcheck:
+#     enabled:
+#     state:
+#   tags: [yum_repository_mod]
 
-- name:
+- name: ----- yum list -----
   yum:
-    name:
-    state:
-  tags: [yum_mod]
+    list: httpd
+    register: yum_list_out
+  tags: [yum_list]
+
+- name: ----- show yum list -----
+  debug: 
+    msg: "{{yum_list_out}}"
+  tags: [yum_list]
