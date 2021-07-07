@@ -1,0 +1,9 @@
+- name: ----- Template module -----
+  template:
+    src:
+    dest:
+    owner:
+    group:
+    backup:
+    force:
+  tags: [template_mod]
