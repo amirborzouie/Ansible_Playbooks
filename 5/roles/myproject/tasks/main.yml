@@ -8,6 +8,7 @@
   user:
     name: userx
     group: devops
+    # if you make the state = absent, the user will be checked not to exist
     state: present
     shell: /bin/bash
     password: 1234
