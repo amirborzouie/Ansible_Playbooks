@@ -14,6 +14,12 @@
     state: present
   tags: [nginx_installation]
 
+- name: ----- starting nginx service -----
+  service:
+    name: nginx
+    state: started
+  tags: [nginx_started]
+  
 # - name: ----- template mod for nginx.conf -----
 #   template:
 #     src: nginx.conf.j2
