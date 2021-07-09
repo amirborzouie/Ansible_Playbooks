@@ -1,7 +1,7 @@
 - name: ----- Replace Module -----
   replace:
     path: /etc/nginx/nginx.conf
-    regexp: '^        listen        8082;'
+    regexp: '        listen       8082;'
     replace: '        listen        8080;'
   # after:
   # before:
