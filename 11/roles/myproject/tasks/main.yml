@@ -1,20 +1,52 @@
-# - name: ----- Replace Module -----
-#   replace:
-#     path: /etc/nginx/nginx.conf
-#     regexp: '        listen       8082;'
-#     replace: '        listen        8080;'
-#   # after:
-#   # before:
-#   tags: [replace_mod]
+- name: ----- Replace Module -----
+  replace:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: 'Listen 80'
+    replace: 'Listen 8080'
+  # after:
+  # before:
+  tags: [httpd_change_port]
 
-- name: ----- service nginx enabled -----
+- name: ----- service httpd enabled -----
   service:
-    name: nginx
+    name: httpd
     enabled: yes
-  tags: [nginx_enabled]
+    state: restarted
+  tags: [httpd_service]
 
-- name: ----- service nginx started -----
-  service:
-    name: nginx
-    state: started
-  tags: [nginx_started]
+- name: ----- arch mod -----
+  archive:
+    path: /root/testdir/*
+    dest: /tmp/test.tar.gz
+  tags: [arch_mod]
+
+- name: ----- unarch mod -----
+  unarchive:
+    src: /tmp/test.tar.gz
+    dest: /opt
+    exclude:
+      - file2
+      - file3
+    remote_src: yes
+  tags: [unarch_mod]
+
+- name: ----- wait mod -----
+  wait_for:
+    path: /var/log/httpd/access_log
+    search_regex: '192.168.56.1'
+  tags: [wait_mod]
+
+- name: ----- access_debug_msg -----
+  debug:
+    msg: "ip is being seen"
+  tags: [wait_mod]
+
+- name: ----- Wait_for port 80 -----
+  wait_for:
+    host: 192.168.56.102
+    port: 8080
+    delay: 10
+  tags: [wait_for_nginx_80]
+
+
+    
