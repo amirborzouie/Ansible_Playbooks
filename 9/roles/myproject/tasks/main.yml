@@ -1,0 +1,6 @@
+- name: ----- Lineinfile module -----
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    insertafter: '        listen       8082;'
+  # insertbefore:
+    line: '   listen  8080 default_server;'
