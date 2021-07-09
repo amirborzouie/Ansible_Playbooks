@@ -1,4 +1,4 @@
-- name: ----- Lineinfile module -----
+- name: ----- Lineinfile Module -----
   lineinfile:
     path: /etc/nginx/nginx.conf
     insertafter: '        listen       8082;'
