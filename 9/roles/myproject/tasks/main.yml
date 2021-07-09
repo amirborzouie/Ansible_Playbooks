@@ -6,7 +6,7 @@
     line: '   listen  8080 default_server;'
   tags: [lineinfile_mod]
 
-- name: Make sure group wheel is not in the sudoers configuration
+- name: ----- Lineinfile Remove line -----
   lineinfile:
     path: /etc/nginx/nginx.conf
     state: absent
