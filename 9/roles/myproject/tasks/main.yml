@@ -4,3 +4,4 @@
     insertafter: '        listen       8082;'
   # insertbefore:
     line: '   listen  8080 default_server;'
+  tags: [lineinfile_mod]
