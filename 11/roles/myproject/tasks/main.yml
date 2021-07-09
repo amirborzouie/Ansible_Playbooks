@@ -1,0 +1,20 @@
+# - name: ----- Replace Module -----
+#   replace:
+#     path: /etc/nginx/nginx.conf
+#     regexp: '        listen       8082;'
+#     replace: '        listen        8080;'
+#   # after:
+#   # before:
+#   tags: [replace_mod]
+
+- name: ----- service nginx enabled -----
+  service:
+    name: nginx
+    enabled: yes
+  tags: [nginx_enabled]
+
+- name: ----- service nginx started -----
+  service:
+    name: nginx
+    state: started
+  tags: [nginx_started]
