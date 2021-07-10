@@ -30,16 +30,16 @@
     remote_src: yes
   tags: [unarch_mod]
 
-- name: ----- wait mod -----
+- name: ----- wait_for mod -----
   wait_for:
     path: /var/log/httpd/access_log
     search_regex: '192.168.56.1'
-  tags: [wait_mod]
+  tags: [wait_for_mod]
 
 - name: ----- access_debug_msg -----
   debug:
     msg: "ip is being seen"
-  tags: [wait_mod]
+  tags: [wait_for_mod]
 
 - name: ----- Wait_for port 80 -----
   wait_for:
@@ -48,5 +48,39 @@
     delay: 10
   tags: [wait_for_nginx_80]
 
+- name: ----- Exercise 18 -----
+  wait_for:
+    path: /var/log/httpd/access_log
+    search_regex: "{{ip_address_of_host}}"
+  tags: [wait_apache]
 
-    
+- name: ---- msg of wait_for module -----
+  debug:
+    msg: '{{ip_address_of_host}} access to apache'
+  tags: [wait_apache]
+
+- name: ----- wait_for module -----
+  wait_for:
+    host: {{host_ip}}
+    port: 80
+    delay: 10
+    state: started # absent, drained, present, started, stopped
+
+- name: ----- ignore_errors directive -----
+  command: /bin/false
+  ignore_errors: yes
+
+- name: ----- Async Actions -----
+  yum:
+    name: *
+    state: latest
+  async: 7200
+  poll: 5 # this task is being checked every 5 seconds
+  # if you put poll: 0 "check" is not going to be done
+
+- name: ----- wait_for_connection -----
+  wait_for_connection:
+    timeout: 300
+    delay: 10
+    sleep: 5
+  tags: [wait_for_connection_mod]
