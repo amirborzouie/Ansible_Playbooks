@@ -1,0 +1,49 @@
+- name: ----- reboot module -----
+  reboot:
+    reboot_timeout: 50
+  tags: [reboot_mod]
+
+- name: ----- mail module -----
+  mail:
+    host: 127.0.0.1
+    port: 2025
+    subject: Ansible-report
+    body: Hello, this is an e-mail. I hope you like it ;-)
+    from: amir@example.net (Amir Borzouie)
+    to: John Doe <j.d@example.org>, Suzie Something <sue@example.com>
+    cc: Charlie Root <root@localhost>
+    attach: /etc/group /tmp/pavatar2.png
+    headers: 'Reply-To=john@example.com|X-Special="Something or other"'
+    charset: utf8
+  delegate_to: localhost
+  # As ansible delegate_to is a directive, not an individual module,
+  # It integrates with other modules and it controls the task execution by 
+  # deciding which host should run the task at runtime. 
+  # ... this is a simple delegation where the control of execution 
+  # transferred from remote host to the master.
+
+- name: ----- subversion module -----
+  subversion:
+    repo: svn+ssh://an.example.org/path/to/repo
+    dest: /srv/checkout
+    username: amir
+    password: 123
+    checkout: no
+    update: no
+    revision: 5
+  tags: [svn_mod]
+
+- name: ----- get_url module -----
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    mode: 0440
+    timeout: 30
+    url_username: test
+    url_password: test
+  tags: [get_url_mod]
+
+- name: ----- timezone module -----
+  timezone:
+    name: Asia/Tokyo
+  tags: [timezone_mod]
