@@ -2,18 +2,18 @@
   yum:
     name: mariadb-server
     state: installed
-  tags: [mariadb_installation, mariadb]
+  tags: [ mariadb_installation, mariadb ]
 
 - name: ----- mariadb service enabled and started -----
   service:
     name: mariadb
     enabled: yes
     state: started
-  tags: [mariadb_start, mariadb]
+  tags: [ mariadb_start, mariadb ]
 
 - name: ----- mysql-python package installation -----
   yum:
     name: MySQL-python
     state: installed
-  tags: [mysql-python_installation, mariadb]
+  tags: [ mysql-python_installation, mariadb ]
 
