@@ -78,3 +78,9 @@
     version: release-0.22
   tags: [git_mod]
 
+- name: ----- rsync module -----
+  synchronize:
+    src: /first/absolute/path
+    dest: /second/absolute/path
+  delegate_to: "{{ inventory_hostname }}"
+
