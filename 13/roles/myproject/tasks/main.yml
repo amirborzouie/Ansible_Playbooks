@@ -17,3 +17,8 @@
     state: installed
   tags: [ mysql-python_installation, mariadb ]
 
+- name: ----- mariadb create a database -----
+  mysql_db:
+    name: mydb
+    state: present
+  tags: mydb_database
