@@ -1,0 +1,59 @@
+---
+- name: ----- get the db_name -----
+  pause:
+        prompt: "please enter the name of PlayBook: " 
+  register: pb_name
+  tags: pb_creator
+
+- name: ----- level 1 -----
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}
+        state: directory
+  tags: pb_creator
+
+- name: ----- level 2 file -----
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}/project.yml
+        state: touch
+  tags: pb_creator
+
+- name: ----- level 2 dirs -----
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}/{{item}}
+        state: directory
+  loop:
+        - inventory
+        - roles
+  tags: pb_creator
+
+- name: ----- roles/project/ -----
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}/roles/project
+        state: directory
+  tags: pb_creator
+
+- name: ----- level 3 dirs (roles) ----- 
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}/roles/project/{{item}}
+        state: directory
+  loop:
+        - defaults
+        - tasks
+        - templates
+        - meta
+        - handlers
+        - vars
+        - files
+  tags: pb_creator
+
+- name: ----- main.yml -----
+  file:
+        path: /root/Ansible_Playbooks/{{pb_name.user_input}}/roles/project/{{item}}/main.yml
+        state: touch
+  loop:
+        - defaults
+        - tasks
+        - meta
+        - handlers
+        - vars
+  tags: pb_creator
