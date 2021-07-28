@@ -92,3 +92,19 @@
         msg: "/home/dir1 exists"
   when: stat_out.stat.exists
   tags: stat_mod
+
+- name: ----- cat /home/test1.txt -----
+  shell: cat /root/test1.txt
+  register: catty
+  tags: condition_3
+
+- name: ----- if /home/test1.txt contains the Ansible word -----
+  debug:
+        msg: "Ansible word exists"
+  when: catty.stdout.find('Ansible') != -1
+  tags: condition_3
+
+- name: ----- if var1 or var2 is true -----
+  shell: echo "var1"
+  when: var1
+  tags: cond_4
