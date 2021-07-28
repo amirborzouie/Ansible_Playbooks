@@ -1,4 +1,4 @@
 nginx_port: "8082"
 #backup_path: "/home"
-var1: true
+var1: false
 var2: "yes"

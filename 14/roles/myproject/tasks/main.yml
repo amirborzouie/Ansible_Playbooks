@@ -106,5 +106,26 @@
 
 - name: ----- if var1 or var2 is true -----
   shell: echo "var1"
-  when: var1
+  when: var1 or var2 | bool
   tags: cond_4
+
+- name: ----- if var1 is false or not -----
+  debug:
+        msg: "var1 is false"
+  when: not var1
+  tags: cond_5
+
+########## Exercise 29 ############
+
+- name: ----- confirm dile deletion -----
+  pause:
+        prompt: "Are you sure to delete file?(yes/no)"
+  register: confirm_delete
+  tags: confirm_del
+
+- name: ----- delete the file -----
+  file:
+        path: /root/test1.txt
+        state: absent
+  when: hostvars[play_hosts.0].confirm_delete.user_input | bool
+  tags: confirm_del
