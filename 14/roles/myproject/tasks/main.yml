@@ -1,24 +1,94 @@
-- name: ----- mariadb installation -----
-  yum:
-    name: mariadb-server
-    state: installed
-  tags: [ mariadb_installation, mariadb ]
+- name: ----- show ansible_os_family -----
+  debug:
+        msg: "{{ansible_os_family}}"
+  tags: ansible_os_family
 
-- name: ----- mariadb service enabled and started -----
+- name: ----- set package_name -----
+  set_fact:
+        package_name: "httpd"
+  when: ansible_os_family=="RedHat"
+  tags: set_package_name
+
+- name: ----- set package_name -----
+  set_fact:
+        package_name: "apache2"
+  when: ansible_os_family=="Suse"
+  tags: set_package_name
+
+- name: ----- show package_name -----
+  debug:
+        msg: "{{package_name}}"
+  tags: set_package_name
+
+- name: ----- rpm query mariadb -----
+  shell: rpm -qa | grep mariadb-server
+  register: mariadb_rpm
+  tags: check_mariadb_server
+
+- name: ----- check is mariadb-server exists -----
+  debug:
+        msg: "mariadb-server exists"
+  when: "'mariadb-server' in mariadb_rpm.stdout"
+  tags: check_mariadb_server
+
+- name: ----- package_facts mod -----
+  package_facts:
+        manager: auto
+  tags: condition_2
+
+- name: ----- check if nginx exists -----
+  debug:
+        var: ansible_facts.packages['nginx']
+  tags: condition_2
+
+- name: ----- Is nginx installed? -----
+  debug:
+        msg: "nginx is installed!"
+  when: "'nginx' in ansible_facts.packages"
+  tags: condition_2
+
+- name: ----- prompt module -----
+  pause:
+        prompt: "The backup path is undefined! Please eneter the real one: "
+  register: backup_path2
+  when: backup_path is not defined
+  tags: pause_mod
+
+- name: ----- nginx installation -----
+  yum:
+        name: nginx
+        state: present
+  when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == "7"
+  tags: nginx_installation_condition
+
+- name: ----- nginx enabled and started -----
   service:
-    name: mariadb
-    enabled: yes
-    state: started
-  tags: [ mariadb_start, mariadb ]
+        name: nginx
+        state: started
+        enabled: yes
+  tags: nginx_service
 
-- name: ----- mysql-python package installation -----
-  yum:
-    name: MySQL-python
-    state: installed
-  tags: [ mysql-python_installation, mariadb ]
+- name: ----- check is nginx is installed -----
+  shell: rpm -qa | grep nginx
+  register: rpm_out
+  tags: nginx_check
 
-- name: ----- mariadb create a database -----
-  mysql_db:
-    name: mydb
-    state: present
-  tags: mydb_database
+- name: ----- debug of above -----
+  debug:
+        msg: "nginx is installed"
+  when: "'nginx' in rpm_out.stdout"
+  tags: nginx_check
+
+- name: ----- check if /home/dir1 exists -----
+  stat:
+        path: /home/dir1
+  register: stat_out
+  tags: stat_mod
+
+- name: ----- debug of above -----
+  debug:
+        msg: "/home/dir1 exists"
+  when: stat_out.stat.exists
+  tags: stat_mod

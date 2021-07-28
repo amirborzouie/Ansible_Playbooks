@@ -1,1 +1,2 @@
 nginx_port: "8082"
+#backup_path: "/home"

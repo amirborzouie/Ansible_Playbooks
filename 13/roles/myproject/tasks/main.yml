@@ -19,6 +19,45 @@
 
 - name: ----- mariadb create a database -----
   mysql_db:
-    name: mydb
-    state: present
+    name: mydatabase-1
+    state: absent
   tags: mydb_database
+
+- name: ----- mariadb dump a database -----
+  mysql_db:
+    state: dump
+    name: mydatabase-1
+    target: /home/mydatabase-1_dump.sql
+  tags: mydb_dump
+
+- name: ----- mariadb import a database -----
+  mysql_db:
+    state: import
+    name: mydatabase-1
+    target: /home/mydatabase-1_dump.sql
+  tags: mydb_restore
+
+- name: ----- Add mysql user -----
+  mysql_user:
+    name: amir
+    password: 12345
+    priv: 'mydatabase-1.*:ALL'
+    state: present
+  tags: mysql_user
+
+- name: ----- find module ----- 
+  find:
+    paths: /etc
+    age: 4w
+    size: 1m
+    recurse: yes
+    file_type: file
+    pattern: '*.txt,*.conf'
+  tags: find_mod
+
+- name: ----- local_action module -----
+  local_action:
+    module: file
+    path: /home/test5
+    state: touch
+  tags: local_action_mod
