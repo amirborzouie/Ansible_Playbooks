@@ -1,4 +1,5 @@
 ---
+############# Standard Loop ##############
 - name: ----- standard loop -----
   file:
         path: /root/{{item}}.txt
@@ -41,3 +42,118 @@
         - httpd
         - tree
   tags: loop4
+
+- name: ----- standard loop with 2 items -----
+  yum:
+        name: "{{item.name}}"
+        state: "{{item.state}}"
+  with_items:
+        - {name: 'httpd',state: 'latest'}
+        - {name: 'tree',state: 'absent'}
+  tags: loop5
+
+- name: ----- create multiple databases -----
+  mysql_db:
+        name: '{{item}}'
+        state: present
+  with_items:
+        - 'db1'
+        - 'db2'
+        - 'db3'
+  tags: loop6
+
+- name: ----- create multiple database users -----
+  mysql_user:
+        name: '{{item}}'
+        state: present
+        password: 123456
+  with_items:
+        - user1
+        - user2
+  tags: loop7
+
+- name: ----- create users by user_list vars -----
+  user:
+        name: '{{item}}'
+        state: present
+  loop: "{{user_list}}"
+  tags: loop8
+
+############ Nested Loop ############
+
+- name: ----- nested loop -----
+  mysql_user:
+        name: '{{item[0]}}'
+        priv: '{{item[1]}}.*:ALL'
+        append_privs: yes
+        password: 12345
+        login_user: root
+  with_nested:
+        - ['user1', 'user2']
+        - ['db1', 'db2', 'db3']
+  tags: nested_loop
+
+########### Loop over a dictionary ############
+
+- name: ----- loop over dict -----
+  debug:
+        msg: "{{item.key}} - {{item.value}}"
+  loop: "{{my_dict | dict2items}}"
+  tags: dict_loop
+
+###############################################
+
+- name: ----- loops over inventory file -----
+  debug:
+        msg: "{{item}}"
+  loop: "{{groups['myservers']}}"
+  tags: loop9
+
+- name: ----- to show all hosts of inventory -----
+  debug:
+        msg: "{{item}}"
+  loop: "{{groups['all']}}"
+  tags: loop10
+
+###############################################
+
+- name: ----- pause within a loop -----
+  debug:
+        msg: "{{item}}"
+  loop: "{{groups['all']}}"
+  loop_control:
+        pause: 10
+  tags: loop11
+
+- name: ----- tracking the index -----
+  debug:
+        msg: "The {{item}} index is {{my_index}}"
+  loop:
+        - first
+        - second
+        - third
+  loop_control:
+        index_var: my_index
+  tags: loop12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

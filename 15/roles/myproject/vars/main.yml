@@ -2,3 +2,14 @@ nginx_port: "8082"
 #backup_path: "/home"
 var1: false
 var2: "yes"
+
+user_list:
+        - Ali
+        - Alireza
+        - Amin
+        - Amir
+
+my_dict:
+        environment: Cluster_Test
+        app: ElasticSearch
+        version: v2.7
