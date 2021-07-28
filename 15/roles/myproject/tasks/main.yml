@@ -1,0 +1,43 @@
+---
+- name: ----- standard loop -----
+  file:
+        path: /root/{{item}}.txt
+        state: touch
+  with_items:
+        - a1
+        - a2
+  tags: standard_loop
+
+### This is going to be deprecated for yum and standard loop #####
+- name: ----- apache and tree packages installation -----
+  yum:
+        name: "{{item}}"
+        state: present
+  with_items:
+        - httpd
+        - tree
+  tags: loop1
+
+- name: ----- the standard form of above -----
+  yum:
+        name: ['httpd','tree']
+        state: present
+  tags: loop2
+
+- name: ----- create a3 and a4 in /root -----
+  file:
+        path: /root/{{item}}.txt
+        state: touch
+  loop:
+        - a3
+        - a4
+  tags: loop3
+
+- name: ----- apache and tree with loop instead of with_items -----
+  yum:
+        name: "{{item}}"
+        state: present
+  loop:
+        - httpd
+        - tree
+  tags: loop4
