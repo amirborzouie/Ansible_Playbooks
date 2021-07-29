@@ -7,3 +7,24 @@
 ### 1      --> file module for creating dir and file
 ### 2,3    --> script mod, shell mod, expect mod
 ### 4      --> shell mod, raw mod, copy mod
+
+
+.
+├── inventory
+│   └── hosts.yml
+├── project.yml
+└── roles
+    └── project
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── tasks
+        │   └── main.yml
+        ├── templates
+        │   └── nginx.conf.j2
+        └── vars
+            └── main.yml
