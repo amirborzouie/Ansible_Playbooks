@@ -50,6 +50,7 @@ switches of ansible-vault:
     encrypt_string      Encrypt a string
     rekey               Re-key a vault encrypted file
 ```
+NOTE: For running the encrypted playbook you should use --ask-vault-pass or --vault-password-file for getting passfile in ansible-playbook command.
 ## Modules
 
 
