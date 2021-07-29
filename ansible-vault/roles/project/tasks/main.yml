@@ -1,2 +1,12 @@
 - debug:
         msg: "Hi Amir I am encrypted"
+
+- name: ----- set var -----
+  set_fact:
+        my_password: amir7342
+  tags: vault_test
+
+- name: ----- show my_password -----
+  debug:
+        msg: "{{my_password}}"
+  tags: vault_test
