@@ -10,11 +10,7 @@
 This project is simple Lorem ipsum dolor generator.
 	
 ## Standard Structure of PlayBooks
-```
-$ cd ../lorem
-$ npm install
-$ npm start
-```
+
 ```
 Provision_Root_Directory
 ├── inventory
@@ -40,6 +36,5 @@ Provision_Root_Directory
 ## Ansible Vault
 
 ## Modules
-To run this project, install it locally using npm:
 
 
