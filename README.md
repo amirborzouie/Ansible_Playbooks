@@ -1,15 +1,22 @@
-# Ansible_Playbooks
-## Ansible Playbook Exercises
+# Ansible
 
-![ansible](https://user-images.githubusercontent.com/79062988/124553283-cee49d80-de49-11eb-9c51-f7fd90e8f2ee.gif)
+## Table of contents
+* [Ansible Installation](#ansible-installation)
+* [Standard Structure of PlayBooks](#standard-structure-of-playBooks)
+* [Ansible Vault](#ansible-vault)
+* [Modules](#modules)
 
-
-### 1      --> file module for creating dir and file
-### 2,3    --> script mod, shell mod, expect mod
-### 4      --> shell mod, raw mod, copy mod
-
+## Ansible Installation
+This project is simple Lorem ipsum dolor generator.
+	
+## Standard Structure of PlayBooks
 ```
-.
+$ cd ../lorem
+$ npm install
+$ npm start
+```
+```
+Provision_Root_Directory
 ├── inventory
 │   └── hosts.yml
 ├── project.yml
@@ -25,7 +32,14 @@
         ├── tasks
         │   └── main.yml
         ├── templates
-        │   └── nginx.conf.j2
+        │   └── *.j2
         └── vars
             └── main.yml
 ```
+
+## Ansible Vault
+
+## Modules
+To run this project, install it locally using npm:
+
+
