@@ -40,6 +40,16 @@ $ ansible-vault edit <file_name>
 $ ansible-vault rekey <file_name>
 $ ansible-vault encrypt <file_name>
 ```
+switches of ansible-vault:
+```
+    create              Create new vault encrypted file
+    decrypt             Decrypt vault encrypted file
+    edit                Edit vault encrypted file
+    view                View vault encrypted file
+    encrypt             Encrypt YAML file
+    encrypt_string      Encrypt a string
+    rekey               Re-key a vault encrypted file
+```
 ## Modules
 
 
