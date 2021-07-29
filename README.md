@@ -8,7 +8,7 @@
 ### 2,3    --> script mod, shell mod, expect mod
 ### 4      --> shell mod, raw mod, copy mod
 
-
+```
 .
 ├── inventory
 │   └── hosts.yml
@@ -28,3 +28,4 @@
         │   └── nginx.conf.j2
         └── vars
             └── main.yml
+```
