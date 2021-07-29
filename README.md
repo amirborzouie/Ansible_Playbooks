@@ -34,7 +34,12 @@ Provision_Root_Directory
 ```
 
 ## Ansible Vault
-
+```
+$ ansible-vault create <file_name>
+$ ansible-vault edit <file_name>
+$ ansible-vault rekey <file_name>
+$ ansible-vault encrypt <file_name>
+```
 ## Modules
 
 
