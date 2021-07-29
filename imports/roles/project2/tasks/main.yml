@@ -1,0 +1,5 @@
+---
+- name: ----- print a msg from task/main.yml in prj2 -----
+  debug:
+        msg: "print a msg from task/main.yml in prj2"
+  tags: test

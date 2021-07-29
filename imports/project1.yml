@@ -1,0 +1,5 @@
+---
+- hosts: [group_A]
+  roles:
+    - project1
+- import_playbook: project2.yml

@@ -57,3 +57,29 @@
         - handlers
         - vars
   tags: pb_creator
+
+- name: ----- hosts.yml template -----
+  template:
+        src: roles/myproject/templates/hosts.yml.j2
+        dest: /root/Ansible_Playbooks/{{pb_name.user_input}}/inventory/hosts.yml
+        force: yes
+  tags: pb_creator
+
+- name: ----- project.yml template -----
+  template:
+        src: roles/myproject/templates/project.yml.j2
+        dest: /root/Ansible_Playbooks/{{pb_name.user_input}}/project.yml
+        force: yes
+  tags: pb_creator
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,10 @@
+---
+- name: ----- print a msg from task/main.yml in prj1 -----
+  debug:
+        msg: "print a msg from task/main.yml in prj1"
+  tags: test
+
+- import_tasks: task2.yml
+
+- debug:
+        msg: "Moving on..."

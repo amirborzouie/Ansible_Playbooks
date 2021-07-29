@@ -136,24 +136,12 @@
         index_var: my_index
   tags: loop12
 
+############ condition + loop #############
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- name: ----- Retry a task until a certain condition is met -----
+  shell: cat /home/test.txt
+  register: catty
+  until: catty.stdout.find('ansible') != -1
+  retries: 3
+  delay: 10
+  tags: loop13

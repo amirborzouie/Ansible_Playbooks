@@ -1,0 +1,4 @@
+- name: ----- task2 debug msg -----
+  debug:
+        msg: "task2 debug msg"
+  tags: test
