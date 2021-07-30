@@ -72,6 +72,7 @@ switches of ansible-vault:
     encrypt_string      Encrypt a string
     rekey               Re-key a vault encrypted file
 ```
+##### Ansible-ID is a kind of key handle for saving loads of ansible vault passwords of several encrypted files.
 NOTE: For running the encrypted playbook you should use --ask-vault-pass or --vault-password-file for getting passfile in ansible-playbook command.
 ## Modules
 
