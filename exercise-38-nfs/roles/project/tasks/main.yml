@@ -1,0 +1,80 @@
+---
+- name: ----- nfs-utils and firewalld installation -----
+  yum:
+        name: "{{item}}"
+        state: present
+  loop:
+        - firewalld
+        - nfs-utils
+  tags: nfs_installation
+
+- name: ----- enable and start fire and nfs -----
+  service:
+        name: "{{item}}"
+        enabled: yes
+        state: started
+  loop:
+        - firewalld
+        - nfs-server
+  tags: nfs_enabled
+
+- name: ----- firewalld module -----
+  firewalld:
+        service: "{{item}}"
+        permanent: yes
+        zone: public
+        state: enabled
+        immediate: true
+  loop:
+        - ssh
+        - nfs
+  tags: ssh_fire
+
+- name: ----- /data1 -----
+  file:
+        path: /data1
+        state: directory
+        owner: nfsnobody
+        group: nfsnobody
+        mode: 0755
+  tags: data1
+
+- name: ----- /etc/exports -----
+  file: 
+        path: /etc/exports
+        state: touch
+  tags: exports
+
+- name: ----- exports contents -----
+  lineinfile:
+        line: "/data1 {{item}}(rw,sync,no_root_squash,no_subtree_check)"
+        path: /etc/exports
+  with_items:
+        - "{{ groups.nfs_server }}"
+  when: server_role=='nfsclient'
+  tags: config_client_exports
+
+- name: ----- exports contents -----
+  lineinfile:
+        line: "/data1 {{item}}(rw,sync,no_root_squash,no_subtree_check)"
+        path: /etc/exports
+  with_items:
+        - "{{ groups.nfs_client }}"
+  when: server_role=='nfsserver'
+  tags: config_client_exports
+
+- name: ----- exportfs -----
+  shell: 'exportfs -arv'
+  tags: exportfs
+
+- name: ----- mounting in clients -----
+  mount:
+        src: "{{item}}:/data1"
+        path: /data1
+        opts: rw,sync,hard,intr
+        state: mounted
+        fstype: nfs
+  with_items:
+        - "{{ groups.nfs_server }}"
+  when: server_role=='nfsclient'
+  tags: mount_nfs

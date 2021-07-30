@@ -1,0 +1,4 @@
+---
+- hosts: [nfs_nodes]
+  roles:
+    - project
