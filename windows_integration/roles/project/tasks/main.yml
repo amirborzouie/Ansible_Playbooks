@@ -1,0 +1,52 @@
+ - name: ----- win_file module -----
+  win_file:
+        path: c:\dir1
+        state: directory
+  tags: create_dir
+
+- name: ----- win_file module -----
+  win_file:
+        path: c:\dir1\test.txt
+        state: touch
+  tags: create_file
+
+- name: ----- win_copy module ----
+  win_copy:
+        src: file1
+        dest: c:\dir1\
+  tags: copy_file
+
+- name: ------ win_feature -----
+  win_feature:
+        name: NET-Framework-Core
+        source: D:\sources\sxs
+        state: present
+        restart: yes
+  tags: win_feature_mod
+
+- name: ------ win_feature -----
+  win_feature:
+        name: telnet-client
+        source: D:\sources\sxs
+        state: present
+        restart: yes
+  tags: add_telnet
+  
+  - name: ----- win_service module -----
+  win_service:
+        name: W32Time
+        start_mode: auto
+        state: started
+  tags: win_service_mod
+
+- name: ----- download nodejs -----
+  win_get_url:
+        url: https://nodejs.org/dist/v12.18.3/node-v12.18.3-x64.msi
+        dest: c:\node.msi
+  tags: node_install
+
+- name: ----- Install NodeJS ------
+  win_package:
+        path: c:\node.msi
+        state: present
+  tags: node_install     

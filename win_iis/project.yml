@@ -1,0 +1,4 @@
+---
+- hosts: [win_group]
+  roles:
+    - project

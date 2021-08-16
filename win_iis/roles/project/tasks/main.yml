@@ -1,0 +1,50 @@
+- name: ----- install IIS -----
+  win_feature:
+        name: Web-Server
+        state: present
+        include_sub_features: yes
+  register: win_feature
+  tags: [install_iis]
+
+- name: Reboot if installing Web-Server feature requires it
+  win_reboot:
+  when: win_feature.reboot_required
+  tags: [install_iis]
+
+- name: default-website-index
+  win_copy:
+        src: index.html
+        dest: "C:\\inetpub\\wwwroot\\index.html"
+  tags: [default_web]
+
+- name: create new website's directory
+  win_file:
+        path: "c:\\inetpub\\wwwroot\\ansibletest"
+        state: directory
+  tags: create_wesite_dir
+
+- name: default-website-index
+  win_copy:
+        src: index.html
+        dest: "C:\\inetpub\\wwwroot\\ansibletest\\index.html"
+  tags: [default_web]
+  
+  - name: create new website
+  win_iis_website:
+        name: "Ansible Test Site"
+        state: started
+        port: 8080
+        physical_path: "c:\\inetpub\\wwwroot\\ansibletest"
+  tags: create_website
+
+- name: Open site's port on firewall
+  win_firewall_rule:
+        name: mysite8080
+        enable: yes
+        state: present
+        localport: 8080
+        action: Allow
+        direction: In
+        protocol: Tcp
+        force: true
+  tags: firewall_mod
