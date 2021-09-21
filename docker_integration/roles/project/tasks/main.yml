@@ -1,0 +1,6 @@
+---
+- name: ----- pulling image -----
+  docker_image:
+        name: centos
+        source: pull
+  tags: pull_image
