@@ -1,0 +1,4 @@
+---
+- hosts: [group_B]
+  roles:
+    - project
