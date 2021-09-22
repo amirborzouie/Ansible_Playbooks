@@ -50,3 +50,13 @@
   debug:
         msg: '{{inspect_out}}'
   tags: ins_con
+
+- name: ----- create a docker network -----
+  docker_network:
+        name: ansi_net
+        driver: bridge
+        ipam_config:
+          - subnet: 192.168.10.0/24
+            gateway: 192.168.10.1
+            iprange: 192.168.10.0/25
+  tags: doc_net
