@@ -14,3 +14,14 @@
           pull: yes
         source: build
   tags: build_image
+
+- name: ----- inspect -----
+  docker_image_info:
+        name: centos
+  register: inspect_out
+  tags: inspect
+
+- name: ----- show inspect out -----
+  debug:
+        msg: '{{inspect_out}}'
+  tags: inspect
