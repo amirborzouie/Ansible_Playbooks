@@ -76,3 +76,15 @@
   docker_volume:
         name: myvol
   tags: make_vol
+
+- name: ----- inspect a volume -----
+  docker_volume_info:
+        name: myvol
+  register: vol_ins
+  tags: vol_info
+
+- name: ----- msg of above -----
+  debug:
+        msg: '{{vol_ins}}'
+  tags: vol_info
+
