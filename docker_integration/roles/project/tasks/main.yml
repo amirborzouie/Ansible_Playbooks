@@ -3,4 +3,14 @@
   docker_image:
         name: centos
         source: pull
+        # build, local, ...
   tags: pull_image
+
+- name: ----- build docker image -----
+  docker_image:
+        name: myimage:v3
+        build:
+          path: /home/myimage
+          pull: yes
+        source: build
+  tags: build_image
