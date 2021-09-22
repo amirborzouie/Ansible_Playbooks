@@ -60,3 +60,14 @@
             gateway: 192.168.10.1
             iprange: 192.168.10.0/25
   tags: doc_net
+
+- name: ----- inspect a network -----
+  docker_network_info:
+        name: ansi_net
+  register: net_ins
+  tags: net_info
+
+- name: ----- msg of above -----
+  debug:
+        msg: '{{net_ins}}'
+  tags: net_info
