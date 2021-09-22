@@ -4,7 +4,13 @@
         name: centos
         source: pull
         # build, local, ...
-  tags: pull_image
+  tags: centos_image
+
+- name: ----- pulling image -----
+  docker_image:
+        name: nginx
+        source: pull
+  tags: nginx_image
 
 - name: ----- build docker image -----
   docker_image:
@@ -25,3 +31,11 @@
   debug:
         msg: '{{inspect_out}}'
   tags: inspect
+
+- name: ----- run a container -----
+  docker_container:
+        name: mynginx
+        image: nginx
+        ports:
+                - '80:80'
+  tags: run-con
