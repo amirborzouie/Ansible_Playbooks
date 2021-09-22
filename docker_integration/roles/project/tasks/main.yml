@@ -71,3 +71,8 @@
   debug:
         msg: '{{net_ins}}'
   tags: net_info
+
+- name: ----- volumes in docker -----
+  docker_volume:
+        name: myvol
+  tags: make_vol
