@@ -39,3 +39,14 @@
         ports:
                 - '80:80'
   tags: run-con
+
+- name: ----- container inspect -----
+  docker_container_info:
+        name: mynginx
+  register: inspect_out
+  tags: ins_con
+
+- name: ----- msg of above -----
+  debug:
+        msg: '{{inspect_out}}'
+  tags: ins_con
