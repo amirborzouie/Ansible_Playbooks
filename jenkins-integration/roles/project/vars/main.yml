@@ -1,0 +1,2 @@
+tomcat_path: "/opt/tomcat"
+new_war_path: "/var/lib/jenkins/workspace/test-ansible/target/hello-world-war-1.0.0.war"

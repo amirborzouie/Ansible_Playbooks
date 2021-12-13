@@ -1,0 +1,27 @@
+---
+- name: ----- stop tomcat -----
+    service:
+      name: tomcat
+      state: stopped
+    tags: [stop_tomcat]
+
+- name: ----- remove old war files -----
+        file:
+                path: '{{item}}'
+                state: absent
+        with_items:
+        - "{{tomcat_path}}/webapps/hello-world"
+        - "{{tomcat_path}}/webapps/hello-world.war"
+        tags: [remove_wars]
+
+- name: ----- deploy new wars -----
+        copy:
+                src: "{{new_war_path}}"
+                dest: "{{tomcat_path}}/webapps/hello-world.war"
+        tags: [deploy_new_wars]
+
+- name: ----- start tomcat -----
+        service:
+                name: tomcat
+                state: started
+        tags: [start_tomcat]
