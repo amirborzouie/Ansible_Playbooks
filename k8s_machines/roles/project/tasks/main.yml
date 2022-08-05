@@ -1,0 +1,29 @@
+---
+- name: template "/etc/resolv.conf" replacement
+  template:
+        src: roles/project/templates/resolv_conf.j2
+        dest: /etc/resolv.conf
+        force: yes
+        owner: root
+        mode: '0640'
+  tags: resolv_conf
+
+- name: netplan set dns servers
+  lineinfile:
+        path: /etc/netplan/50-cloud-init.yaml
+        insertafter: "dhcp4*"
+        line: "            nameservers:"
+        firstmatch: yes
+        state: present
+
+- name: netplan set dns ips
+  lineinfile:
+        path: /etc/netplan/50-cloud-init.yaml
+        insertafter: "nameservers*"
+        line: "                addresses: [178.22.122.100, 185.51.200.2]"
+        firstmatch: yes
+        state: present
+
+- name: os_families
+  debug:
+        msg: "{{ ansible_distribution }}"
