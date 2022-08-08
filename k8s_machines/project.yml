@@ -1,4 +1,6 @@
 ---
-- hosts: [Kubernetes_Cluster]
+- hosts: 
+        - [Kubernetes_Cluster]
+        - [Ansible-Ubuntu-Server]
   roles:
-    - project
+        - project

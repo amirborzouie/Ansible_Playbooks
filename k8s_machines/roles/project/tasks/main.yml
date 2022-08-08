@@ -5,7 +5,7 @@
         dest: /etc/resolv.conf
         force: yes
         owner: root
-        mode: '0640'
+        mode: '0666'
   tags: resolv_conf
 
 - name: netplan set dns servers
