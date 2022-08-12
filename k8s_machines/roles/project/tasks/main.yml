@@ -24,6 +24,6 @@
         firstmatch: yes
         state: present
 
-- name: os_families
+- name: os_families_
   debug:
         msg: "{{ ansible_distribution }}"
