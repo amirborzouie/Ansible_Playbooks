@@ -1,0 +1,4 @@
+---
+- hosts: [Kubernetes_Cluster]
+  roles:
+    - project
